@@ -235,7 +235,7 @@ Flipsnap.prototype.toPrev = function(transitionDuration) {
 
 Flipsnap.prototype.moveToPoint = function(point, transitionDuration) {
   var self = this;
-  
+
   transitionDuration = transitionDuration === undefined
     ? self.transitionDuration : transitionDuration + 'ms';
 
@@ -270,6 +270,7 @@ Flipsnap.prototype.moveToPoint = function(point, transitionDuration) {
     self._triggerEvent('fsmoveend', true, false);
     self._triggerEvent('fspointmove', true, false);
   }
+  self._triggerEvent('fspointmoveanyway', true, false);
 };
 
 Flipsnap.prototype._setX = function(x, transitionDuration) {
@@ -343,7 +344,7 @@ Flipsnap.prototype._touchMove = function(event, type) {
 
     // When distX is 0, use one previous value.
     // For android firefox. When touchend fired, touchmove also
-    // fired and distX is certainly set to 0. 
+    // fired and distX is certainly set to 0.
     self.directionX =
       distX === 0 ? self.directionX :
       distX > 0 ? -1 : 1;
